@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "901564767504",
+    "project_id": "letfit-4a8ca",
+    "storage_bucket": "letfit-4a8ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901564767504:android:ecd3ed194cdbf464ef5995",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901564767504-2ltllibhjv5804pkgj9eftmnl8fk4887.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTTe0lnGybqpzUy6yBslkikrRFY8k_zJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901564767504-2ltllibhjv5804pkgj9eftmnl8fk4887.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901564767504-29vgq7vir0l9lrtrtr781sn7fcab0vk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.letfit.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901564767504:android:4656dc7db6012559ef5995",
+        "android_client_info": {
+          "package_name": "com.example.fitness_main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901564767504-2ltllibhjv5804pkgj9eftmnl8fk4887.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTTe0lnGybqpzUy6yBslkikrRFY8k_zJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901564767504-2ltllibhjv5804pkgj9eftmnl8fk4887.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901564767504-29vgq7vir0l9lrtrtr781sn7fcab0vk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.letfit.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
