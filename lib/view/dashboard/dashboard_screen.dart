@@ -7,6 +7,7 @@ import 'package:fitnessapp/utils/app_colors.dart';
 import 'package:fitnessapp/view/activity/activity_screen.dart';
 import 'package:fitnessapp/view/payments/pay.dart';
 import 'package:fitnessapp/view/profile/user_profile.dart';
+import 'package:fitnessapp/view/time/time.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
@@ -1008,8 +1009,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      UserProfile.routeName,
-                      arguments: widget.userId,
+                      ReserveTimePage.rutename,
                     );
                   },
                 ),
@@ -1054,8 +1054,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               TabButton(
-                  icon: "assets/icons/user_icon.png",
-                  selectIcon: "assets/icons/user_icon.png",
+                  icon: "assets/icons/mmm.png",
+                  selectIcon: "assets/icons/mmm.png",
                   isActive: selectTab == 5,
                   onTap: () {
                     Navigator.pushNamed(

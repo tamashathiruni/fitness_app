@@ -1,21 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatefulWidget {
-  final String userId; // User ID for sending messages
-  final String documentId; // Instructor ID
-  static const routeName = '/chat';
+class Chat extends StatefulWidget {
+  static String routeName = '/chat';
+  final String userId; // This is the instructor's ID
 
-  const ChatScreen({
+  const Chat({
     required this.userId,
-    required this.documentId,
   });
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatState createState() => _ChatState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatState extends State<Chat> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   List<DocumentSnapshot> messages = []; // Store messages here
@@ -23,11 +21,11 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    // Listen to messages related to the instructor
+    // Listen to all messages related to the instructor
     FirebaseFirestore.instance
         .collection('chats')
         .where('instructorId',
-            isEqualTo: widget.documentId) // Check only instructorId
+            isEqualTo: widget.userId) // Only check instructorId
         .orderBy('timestamp', descending: true)
         .snapshots()
         .listen((snapshot) {
@@ -37,15 +35,14 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  void sendMessage(String message) {
+  void sendMessage(String message, String senderType) {
     if (message.trim().isEmpty) return;
 
     // Send the message with a sender field
     FirebaseFirestore.instance.collection('chats').add({
-      'memberId': widget.userId, // Store user ID for context
-      'instructorId': widget.documentId,
+      'instructorId': widget.userId, // Link the message to the instructor
       'message': message,
-      'sender': 'user', // Indicate the sender as user
+      'sender': senderType, // Either 'instructor' or 'member'
       'timestamp': FieldValue.serverTimestamp(),
     });
 
@@ -82,25 +79,28 @@ class _ChatScreenState extends State<ChatScreen> {
                 final messageText =
                     messageData?['message'] ?? 'Invalid message';
                 final sender =
-                    messageData?['sender'] ?? 'user'; // Default to user
+                    messageData?['sender'] ?? 'member'; // Default to member
 
                 // Determine the styling based on the sender
-                final isUserMessage = sender == 'user';
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  alignment: isUserMessage
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  child: Material(
-                    borderRadius: BorderRadius.circular(10),
-                    color: isUserMessage ? Colors.blue[200] : Colors.green[200],
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        messageText,
-                        style: TextStyle(color: Colors.black),
-                      ),
+                final isInstructorMessage =
+                    sender == 'instructor'; // Check if sender is instructor
+                return Align(
+                  alignment: isInstructorMessage
+                      ? Alignment
+                          .centerRight // Instructor messages on the right
+                      : Alignment.centerLeft, // Member messages on the left
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: isInstructorMessage
+                          ? Colors.blue[200]
+                          : Colors.green[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      messageText,
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 );
@@ -118,13 +118,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       labelText: 'Type a message...',
                       border: OutlineInputBorder(),
                     ),
-                    onSubmitted: sendMessage,
+                    onSubmitted: (message) {
+                      sendMessage(
+                          message, 'instructor'); // Send message as instructor
+                    },
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.send),
                   onPressed: () {
-                    sendMessage(_messageController.text);
+                    sendMessage(_messageController.text,
+                        'instructor'); // Send message as instructor
                   },
                 ),
               ],

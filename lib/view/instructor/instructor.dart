@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitnessapp/common_widgets/round_button.dart';
 import 'package:fitnessapp/common_widgets/round_gradient_button.dart';
 import 'package:fitnessapp/utils/app_colors.dart';
+import 'package:fitnessapp/view/chat/chatins.dart';
 import 'package:fitnessapp/view/login/login_screen.dart';
 import 'package:fitnessapp/view/ratings/rratings.dart';
 import 'package:flutter/material.dart';
@@ -577,6 +578,44 @@ class _InstructorScreenState extends State<InstructorScreen> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: media.width * 0.05,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor2.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Chat With Members",
+                        style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: 100,
+                        height: 25,
+                        child: RoundButton(
+                          title: "Chat",
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              Chat.routeName,
+                              arguments: {'userId': widget.userId},
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -645,7 +684,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                 backgroundColor:
                                     MaterialStateProperty.all(Colors.green),
                                 textStyle: MaterialStateProperty.all(TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255))),
                               ),
@@ -659,7 +698,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                 backgroundColor: MaterialStateProperty.all(
                                     Color.fromARGB(255, 255, 0, 0)),
                                 textStyle: MaterialStateProperty.all(TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255))),
                               ),
@@ -673,7 +712,7 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                 backgroundColor: MaterialStateProperty.all(
                                     Color.fromARGB(255, 255, 255, 255)),
                                 textStyle: MaterialStateProperty.all(TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255))),
                               ),
@@ -688,11 +727,11 @@ class _InstructorScreenState extends State<InstructorScreen> {
                                 backgroundColor: MaterialStateProperty.all(
                                     Color.fromARGB(255, 255, 0, 0)),
                                 textStyle: MaterialStateProperty.all(TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 10,
                                     color: const Color.fromARGB(
                                         255, 255, 255, 255))),
                               ),
-                              child: Text("X"),
+                              child: Text("Del"),
                             ),
                           ],
                         ),
