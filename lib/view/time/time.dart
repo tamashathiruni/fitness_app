@@ -32,7 +32,11 @@ class _ReserveTimePageState extends State<ReserveTimePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Reserve Time Slot'),
+        backgroundColor: Colors.black,
+        title: Text(
+          'Reserve Time Slot',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,7 +45,7 @@ class _ReserveTimePageState extends State<ReserveTimePage> {
           children: [
             Text(
               'Select a time slot:',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
             SizedBox(height: 10),
             Expanded(
@@ -49,7 +53,8 @@ class _ReserveTimePageState extends State<ReserveTimePage> {
                 itemCount: timeSlots.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(timeSlots[index]),
+                    title: Text(timeSlots[index],
+                        style: TextStyle(color: Colors.white)),
                     leading: Radio<String>(
                       value: timeSlots[index],
                       groupValue: selectedTime,
@@ -70,8 +75,10 @@ class _ReserveTimePageState extends State<ReserveTimePage> {
                       // Handle reservation logic here
                       print('Reserved time: $selectedTime');
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Reserved time: $selectedTime'),
-                      ));
+                          content: Text(
+                        'Reserved time: $selectedTime',
+                        style: TextStyle(color: Colors.white),
+                      )));
                     },
               child: Text('Reserve'),
             ),
